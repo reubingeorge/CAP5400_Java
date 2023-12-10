@@ -12,8 +12,35 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Objects;
 
-
+/**
+ * This class is used to parse the parameter file and perform the operations on the images. It uses reflection to
+ * invoke the methods in the Toolbox class. The parameter file is a text file that contains the following information:
+ * <ul>
+ *     <li>Source Image Name</li>
+ *     <li>Target Image Name</li>
+ *     <li>Number of ROIs</li>
+ *     <li>Start X Coordinate of ROI</li>
+ *     <li>Start Y Coordinate of ROI</li>
+ *     <li>Total X Coordinate of ROI</li>
+ *     <li>Total Y Coordinate of ROI</li>
+ *     <li>Method Name</li>
+ *     <li>Method Parameters</li>
+ *     <li>The repetition ... {startX, startY, totalX, totalY, MethodName, Method Parameters}</li>
+ * </ul>
+ * <p><b>NOTE: </b>Ensure that there are <b><i>NO</i></b> overloaded methods in Toolbox. There will be unintended
+ * consequences.</p>
+ * @see Toolbox
+ * @see ROI
+ * @Author Reubin George
+ */
 public class Parser {
+    /**
+     * This method is used to get the number of parameters for a method.
+     * @param clazz The class that contains the method.
+     * @param methodName The name of the method.
+     * @return The number of parameters for the method.
+     * @throws Exception If the method is not found.
+     */
     private static Integer getNumberOfParameterForMethod(Class<?> clazz, String methodName) throws Exception{
         var methods = clazz.getDeclaredMethods();
         for(var method : methods){
@@ -24,9 +51,16 @@ public class Parser {
         throw new NoSuchMethodException("The method `" + methodName + "` was not found in `" + clazz.getName() + "`");
     }
 
+    /**
+     * This method is used to get the parameter types for a method.
+     * @param clazz The class that contains the method.
+     * @param methodName The name of the method.
+     * @return The parameter types for the method.
+     * @throws Exception If the method is not found.
+     */
     private static Class<?> [] getParameterTypes(Class<?> clazz, String methodName) throws Exception {
         var numParameters = getNumberOfParameterForMethod(clazz, methodName);
-        var types = new Class<?>[numParameters-1];
+        var types = new Class<?>[numParameters - 1];
         var methods = clazz.getDeclaredMethods();
         for(var method : methods){
             if(method.getName().equals(methodName)){
@@ -40,6 +74,14 @@ public class Parser {
         throw new NoSuchMethodException("The method `" + methodName + "` was not found in `" + clazz.getName() + "`");
     }
 
+    /**
+     * This method is used to invoke a method using reflection. It is used to invoke the methods in the Toolbox class.
+     * @param instance The instance of the class that contains the method.
+     * @param region The region of interest.
+     * @param methodName The name of the method.
+     * @param parameters The parameters for the method.
+     * @throws Exception If the method is not found.
+     */
     private static void invokeMethod(
             Object instance,
             ROI region,
@@ -62,6 +104,13 @@ public class Parser {
 
     }
 
+    /**
+     * This method is used to convert a string to a given type.
+     * @param targetType The type to convert the string to.
+     * @param value The string to convert.
+     * @return The converted object.
+     * @throws Exception If the type cannot be used for conversion.
+     */
     private static Object convertToType(Class<?> targetType, String value) throws Exception {
         if (targetType == String.class) {
             return value;
@@ -69,10 +118,19 @@ public class Parser {
             return Integer.parseInt(value);
         } else if (targetType == float.class || targetType == Float.class) {
             return Float.parseFloat(value);
+        } else if (targetType == double.class || targetType == Double.class) {
+            return Double.parseDouble(value);
         }
         throw new Exception("Type `" + targetType.getName() + "` cannot be used for conversion");
     }
 
+    /**
+     * This method is used to find a method in a class. It is used to find the methods in the Toolbox class.
+     * @param clazz The class that contains the method.
+     * @param methodName The name of the method.
+     * @return The method.
+     * @throws NoSuchMethodException If the method is not found.
+     */
     private static Method findMethod(Class<?> clazz, String methodName) throws NoSuchMethodException {
         var methods = clazz.getDeclaredMethods();
         for (var method : methods) {
@@ -83,8 +141,11 @@ public class Parser {
         throw new NoSuchMethodException("The method `" + methodName + "` was not found in `" + clazz.getName() + "`");
     }
 
+    /**
+     * This method is used to perform the operations on the images.
+     * @param parameterFile The name of the parameter file.
+     */
     public static void performOperations(String parameterFile) {
-
         try{
             var path = Paths.get(parameterFile);
             var lines = Files.readAllLines(path);
@@ -130,15 +191,30 @@ public class Parser {
                         }
                         catch (Exception e1){
                             System.out.println("["+"\033[1;31mFAILED\033[0m"+ "]");
+                            //e1.printStackTrace();
+                            String errorMessage;
+                            if(e1.getMessage() != null){
+                                errorMessage = e1.getMessage();
+                            }
+                            else {
+                                errorMessage = e1.getCause().getMessage();
+                            }
+                            System.out.printf("\033[1m%15s\033[0m%s\n","Reason: ", errorMessage);
                             e1.printStackTrace();
-                            System.out.printf("\033[1m%15s\033[0m%s\n","Reason: ", e1.getCause().getMessage());
                         }
                     }
                     sourceImage.save(targetImageName);
                 }
                 catch (Exception e2){
-                    e2.printStackTrace();
-                    System.out.printf("\033[1m%15s\033[0m%s\n","Error: ", e2.getCause().getMessage());
+                    //e2.printStackTrace();
+                    String errorMessage;
+                    if(e2.getMessage() != null){
+                        errorMessage = e2.getMessage();
+                    }
+                    else {
+                        errorMessage = e2.getCause().getMessage();
+                    }
+                    System.out.printf("\033[1m%15s\033[0m%s\n","Error: ", errorMessage);
                 }
 
             }

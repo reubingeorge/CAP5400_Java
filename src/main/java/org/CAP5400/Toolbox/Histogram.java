@@ -22,12 +22,31 @@ import static org.CAP5400.Image.Image.MAX_RGB;
 import static org.CAP5400.Misc.Misc.appendToTrackerFile;
 import static org.CAP5400.Misc.Misc.delete;
 
+/**
+ * This class is used to perform histogram operations on a region of interest.
+ * This class performs the following
+ * operations:
+ * <ul>
+ *     <li>Histogram Equalization</li>
+ *     <li>Histogram Stretching</li>
+ *     <li>Threshold Equalization</li>
+ * </ul>
+ * @Author Reubin George
+ * @see ROI
+ * @see AutoCloseable
+ */
 public class Histogram implements AutoCloseable{
     private List<Map<Integer, Set<Point>>> data;
     private final String colorspace;
     private final int [] MAX_HSV = {179, MAX_RGB, MAX_RGB};
-
     private ROI region;
+
+    /**
+     * Constructor for the Histogram class.
+     * @param region The region of interest.
+     * @param colorSpace The color space to use. Can be either "rgb" or "hsv".
+     * @throws Exception Exception thrown if an error occurs.
+     */
     public Histogram(@NotNull ROI region, @Nullable String colorSpace) throws Exception {
         colorspace = (colorSpace == null || colorSpace.isBlank()) ? "rgb" : colorSpace.toLowerCase(Locale.US);
         if(!colorspace.equals("rgb") && !colorspace.equals("hsv")){
@@ -36,7 +55,7 @@ public class Histogram implements AutoCloseable{
         this.region = region;
         this.region.getRegionImage().addObserver(o ->{
             try {
-                computeBin();
+                computeBin(); //recompute the bin if the region image changes
             }
             catch (Exception e){
                 throw new RuntimeException(e);
@@ -49,6 +68,12 @@ public class Histogram implements AutoCloseable{
 
     }
 
+    /**
+     * This method is used to compute the bin for the histogram.
+     * The bin is a collection of points that have the same
+     * intensity value for all channels in the region of interest.
+     * @throws Exception Exception thrown if an error occurs.
+     */
     private void computeBin() throws Exception {
 
         this.data = new ArrayList<>();
@@ -83,6 +108,11 @@ public class Histogram implements AutoCloseable{
             hsvImage.release();
     }
 
+/**
+     * This method is used to save the histogram of a channel.
+     * @param channel The channel to save the histogram for.
+     * @throws Exception Exception thrown if an error occurs.
+     */
     private void saveChannelHistogram(@IntRange(from = 0, to = 2) int channel) throws Exception {
         var histogramImage = new Image(MAX_RGB + 1, MAX_RGB + 1);
         var channelData = new int[MAX_RGB + 1];
@@ -111,8 +141,9 @@ public class Histogram implements AutoCloseable{
         appendToTrackerFile(filename);
     }
 
-
-
+    /**
+     * This method is used to close the histogram. It clears the data.
+     */
     @Override
     public void close() {
         for (var channelBin : data) {
@@ -124,6 +155,12 @@ public class Histogram implements AutoCloseable{
         data.clear();
     }
 
+    /**
+     * This method is used to get the maximum possible intensity value for a channel.
+     * @param channel The channel to get the maximum possible intensity value for.
+     * @return The maximum possible intensity value for a channel.
+     * @throws Exception Exception thrown if an error occurs.
+     */
     private int getMaxChannelValue(@IntRange(from = 0, to = 2) int channel) throws Exception {
         int maxIntensity;
         if(this.colorspace.equals("rgb")){
@@ -137,6 +174,11 @@ public class Histogram implements AutoCloseable{
         return maxIntensity;
     }
 
+    /**
+     * This method is used to perform histogram equalization on a channel.
+     * @param channel The channel to perform histogram equalization on.
+     * @throws Exception Exception thrown if an error occurs.
+     */
     public void performEqualization(@IntRange(from = 0, to = 2) int channel) throws Exception {
         saveChannelHistogram(channel);
         var channels = new ArrayList<Mat>();
@@ -175,13 +217,23 @@ public class Histogram implements AutoCloseable{
         channels.clear();
     }
 
+    /**
+     * This method is used to perform histogram equalization on all channels.
+     * @throws Exception Exception thrown if an error occurs.
+     */
     public void performEqualization() throws Exception {
         for(int i = 0; i < region.getChannels(); i++){
             performEqualization(i);
         }
     }
 
-
+    /**
+     * This method is used to perform histogram stretching on a channel.
+     * @param minStretch The minimum stretch value.
+     * @param maxStretch The maximum stretch value.
+     * @param channel The channel to perform histogram stretching on.
+     * @throws Exception Exception thrown if an error occurs.
+     */
     public void performStretch(
             @IntRange(from = 0, to = MAX_RGB) int minStretch,
             @IntRange(from = 0, to = MAX_RGB) int maxStretch,
@@ -267,6 +319,12 @@ public class Histogram implements AutoCloseable{
 
     }
 
+    /**
+     * This method is used to perform histogram stretching on all channels.
+     * @param minStretch The minimum stretch value.
+     * @param maxStretch The maximum stretch value.
+     * @throws Exception Exception thrown if an error occurs.
+     */
     public void performStretch(
             @IntRange(from = 0, to = MAX_RGB) int minStretch,
             @IntRange(from = 0, to = MAX_RGB) int maxStretch) throws Exception {
@@ -275,6 +333,14 @@ public class Histogram implements AutoCloseable{
         }
     }
 
+    /**
+     * This method is used to perform threshold equalization on a channel.
+     * The method extracts all the pixel points with
+     * an intensity value less than the threshold value and performs histogram equalization just on them.
+     * @param threshold The threshold value.
+     * @param channelIndex The channel to perform threshold equalization on.
+     * @throws Exception Exception thrown if an error occurs.
+     */
     public void performThresholdEqualization(
             @IntRange(from = 0, to = MAX_RGB) int threshold,
             @IntRange(from = 0, to = 2) int channelIndex) throws Exception {

@@ -1,0 +1,52 @@
+baboon.pgm baboon_adbi.pgm 2 0 0 200 200 addGrey 50 200 200 200 200 binarize 100
+baboon.pgm baboon_ro90.pgm 1 200 200 200 200 rotate 90
+baboon.pgm baboon_ro180.pgm 1 200 200 200 200 rotate 180
+baboon.pgm baboon_ro270.pgm 1 200 200 200 200 rotate 270
+baboon.ppm baboon_ro90.ppm 1 200 200 200 200 rotate 90
+baboon.ppm baboon_ro180.ppm 1 200 200 200 200 rotate 180
+baboon.ppm baboon_ro270.ppm 1 200 200 200 200 rotate 270
+baboon.pgm baboon_sc15.pgm 1 200 200 200 200 scale 1.5
+baboon.pgm baboon_sr15-90.pgm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 90
+baboon.pgm baboon_sr15-180.pgm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 180
+baboon.pgm baboon_sr15-270.pgm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 270
+baboon.ppm baboon_sc15.ppm 1 200 200 200 200 scale 1.5
+baboon.ppm baboon_sr15-90.ppm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 90
+baboon.ppm baboon_sr15-180.ppm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 180
+baboon.ppm baboon_sr15-270.ppm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 270
+slope.pgm slope_hs.pgm 1 25 25 484 750 histogramStretchAll 0 255
+baboon.pgm baboon_hs.pgm 1 200 200 200 200 histogramStretchAll 0 255
+baboon.pgm baboon_hs_ro90.pgm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 90
+baboon.pgm baboon_hs_ro180.pgm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 180
+baboon.pgm baboon_hs_ro270.pgm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 270
+slope.pgm slope_he.pgm 1 25 25 484 750 histogramEqualizationAll rgb
+baboon.pgm baboon_he.pgm 1 200 200 200 200 histogramEqualizationAll rgb
+baboon.pgm baboon_he_ro90.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 90
+baboon.pgm baboon_he_ro180.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 180
+baboon.pgm baboon_he_ro270.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 270
+mountain.pgm mountain_he.pgm 1 10 10 321 492 histogramEqualizationAll rgb
+slope.pgm slope_he.pgm 1 25 25 484 750 histogramEqualizationAll
+mountain.pgm mountain_he_th50.pgm 1 10 10 321 492 thresholdHistogramEqualization 50 0
+baboon.ppm baboon_he_r_g_b.ppm 3 0 0 200 200 histogramEqualization rgb 0 200 200 200 200 histogramEqualization rgb 1 400 400 112 112 histogramEqualization rgb 2
+baboon.ppm baboon_he_rgb.ppm 1 50 50 412 412 histogramEqualizationAll rgb
+baboon.ppm baboon_he_h_s_v.ppm 3 0 0 200 200 histogramEqualization hsv 0 200 200 200 200 histogramEqualization hsv 1 400 400 112 112 histogramEqualization hsv 2
+baboon.ppm baboon_he_hsv.ppm 1 50 50 412 412 histogramEqualizationAll hsv
+baboon.pgm baboon_lp.pgm 1 128 128 256 256 lowPassFilter rgb 0 30
+baboon.pgm baboon_lp_ro90.pgm 2 128 128 256 256 lowPassFilter rgb 0 30 128 128 256 256 rotate 90
+baboon.pgm baboon_lp_ro180.pgm 2 128 128 256 256 lowPassFilter rgb 0 30 128 128 256 256 rotate 180
+baboon.pgm baboon_lp_ro270.pgm 2 128 128 256 256 lowPassFilter rgb 0 30 128 128 256 256 rotate 270
+baboon.pgm baboon_hp.pgm 1 128 128 256 256 highPassFilter rgb 0 15
+baboon.pgm baboon_hp_ro90.pgm 2 128 128 256 256 highPassFilter rgb 0 15 128 128 256 256 rotate 90
+baboon.pgm baboon_hp_ro180.pgm 2 128 128 256 256 highPassFilter rgb 0 15 128 128 256 256 rotate 180
+baboon.pgm baboon_hp_ro270.pgm 2 128 128 256 256 highPassFilter rgb 0 15 128 128 256 256 rotate 270
+baboon.pgm baboon_bs.pgm 1 128 128 256 256 bandStopFilter rgb 0 10 30
+baboon.pgm baboon_bs_ro90.pgm 2 128 128 256 256 bandStopFilter rgb 0 10 30 128 128 256 256 rotate 90
+baboon.pgm baboon_bs_ro180.pgm 2 128 128 256 256 bandStopFilter rgb 0 10 30 128 128 256 256 rotate 180
+baboon.pgm baboon_bs_ro270.pgm 2 128 128 256 256 bandStopFilter rgb 0 10 30 128 128 256 256 rotate 270
+baboon.ppm baboon_lp_h_s_v.ppm 3 0 0 128 128 lowPassFilter hsv 0 10 128 128 128 128 lowPassFilter hsv 1 10 256 256 128 128 lowPassFilter hsv 2 10
+baboon.ppm baboon_hp_h_s_v.ppm 3 0 0 128 128 highPassFilter hsv 0 15 128 128 128 128 highPassFilter hsv 1 15 256 256 128 128 highPassFilter hsv 2 15
+baboon.ppm baboon_bs_h_s_v.ppm 3 0 0 128 128 bandStopFilter hsv 0 5 15 128 128 128 128 bandStopFilter hsv 1 5 15 256 256 128 128 bandStopFilter hsv 2 5 15
+baboon.pgm baboon_um3003.pgm 1 0 0 512 512 sharpenEdge rgb 0 30 0.3
+baboon.pgm baboon_um6003.pgm 1 0 0 512 512 sharpenEdge rgb 0 60 0.3
+baboon.pgm baboon_um12003.pgm 1 0 0 512 512 sharpenEdge rgb 0 120 0.3
+baboon.ppm baboon_v_um3003.ppm 1 0 0 512 512 sharpenEdge hsv 2 30 0.3
+baboon.pgm baboon_lp_hp_bs.pgm 3 0 0 128 128 lowPassFilter rgb 0 15 128 128 128 128 highPassFilter rgb 0 15 256 256 128 128 bandStopFilter rgb 0 10 30

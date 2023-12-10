@@ -178,4 +178,14 @@ public class Misc {
             }
         }
     }
+
+    /**
+     * This method is used to check if a file exists.
+     * @param filename The name of the file.
+     * @return True if the file exists, false otherwise.
+     */
+    public static boolean doesFileExist(String filename){
+        var path = Paths.get(filename);
+        return Files.exists(path) && Files.isRegularFile(path);
+    }
 }

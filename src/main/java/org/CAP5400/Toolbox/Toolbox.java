@@ -3,6 +3,7 @@ package org.CAP5400.Toolbox;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.CAP5400.Image.Image;
 import org.CAP5400.Misc.FloatRange;
 import org.CAP5400.RegionOfInterest.ROI;
@@ -11,7 +12,11 @@ import org.checkerframework.common.value.qual.IntRange;
 import static org.CAP5400.Image.Image.MAX_RGB;
 
 /**
- *
+ * This class contains a set of static methods that can be used to perform operations on a region of interest (ROI)
+ * within an image.
+ * @see ROI
+ * @author Reubin George
+ * @version 1.0
  */
 public class Toolbox {
     /**
@@ -225,8 +230,6 @@ public class Toolbox {
         histogram.close();
     }
 
-
-
     /**
      * This method applies threshold histogram equalization to a specified channel within a region of interest (ROI)
      * within an image. The method enhances the histogram of dark pixels (below the threshold) in the specified channel.
@@ -281,6 +284,52 @@ public class Toolbox {
         var histogram = new Histogram(region, "rgb");
         histogram.performStretch(minStretch, maxStretch);
         histogram.close();
+    }
+
+    public static void lowPassFilter(
+            @NotNull ROI region,
+            @NotNull @NotBlank String colorspace,
+            @IntRange(from = 0, to = 2) int channel,
+            @Positive int filterRadius) throws Exception {
+        try(var fourier = new Fourier(region, colorspace, channel)){
+            fourier.applyFilter(filterRadius, 0, "Low Pass");
+        }
+
+
+    }
+
+    public static void highPassFilter(
+            @NotNull ROI region,
+            @NotNull @NotBlank String colorspace,
+            @IntRange(from = 0, to = 2) int channel,
+            @Positive int filterRadius) throws Exception {
+        try(var fourier = new Fourier(region, colorspace, channel)){
+            fourier.applyFilter(filterRadius, 0, "High Pass");
+        }
+    }
+
+    public static void bandStopFilter(
+            @NotNull ROI region,
+            @NotNull @NotBlank String colorspace,
+            @IntRange(from = 0, to = 2) int channel,
+            @Positive int innerFilterRadius, @Positive int outerFilterRadius) throws Exception {
+        if(outerFilterRadius <= innerFilterRadius){
+            throw new Exception("The outer filter (" + outerFilterRadius +
+                    ") must be greater than the inner filter (" + innerFilterRadius + ")");
+        }
+        try(var fourier = new Fourier(region, colorspace, channel))
+        {
+            fourier.applyFilter(innerFilterRadius, outerFilterRadius, "Band Stop");
+        }
+    }
+
+    public static void sharpenEdge(@NotNull ROI region,
+                                   @NotNull @NotBlank String colorspace,
+                                   @IntRange(from = 0, to = 2) int channel,
+                                   @Positive int filterRadius, double sharpeningFactor) throws Exception {
+        try(var fourier = new Fourier(region, colorspace, channel)){
+            fourier.sharpenEdges(filterRadius, sharpeningFactor);
+        }
     }
 
 }

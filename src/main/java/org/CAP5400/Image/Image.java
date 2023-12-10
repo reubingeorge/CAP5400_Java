@@ -22,14 +22,22 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Consumer;
 
-public class Image {
+/**
+ * This class represents an image object. The image object is a 3D array of pixels. The first dimension represents the
+ * rows, the second dimension represents the columns, and the third dimension represents the channels. The image object
+ * can be created from a file or from scratch. The image object can be saved to a file.
+ * <br><br>
+ * <p><b>NOTE: </b> This class uses the OpenCV library to read and write images and deploys the observer design pattern.
+ * Every time a pixel value is changed, the observers are notified.</p>
+ * @Author: Reubin George
+ */
+public class Image implements AutoCloseable{
 
     private String fileName;
     private final int rows, columns, channels;
     private int[][][] pixels;
     private final boolean isColor;
     public static final int MAX_RGB = 255;
-
     private List<Consumer<Image>> observers = new ArrayList<>(); //Deploy observer design pattern
 
     /**
@@ -104,6 +112,10 @@ public class Image {
             throw new ImageIncorrectExtensionException(extension);
         }
 
+        if(!Misc.doesFileExist(this.fileName)){
+            throw new ImageNotFoundException(this.fileName);
+        }
+
         // Load image from resources
         try (InputStream inputStream = Files.newInputStream(Paths.get(fileName))) {
             if (inputStream == null) {
@@ -170,11 +182,14 @@ public class Image {
 
     /**
      * This method sets the pixel value at the specified row, column, and channel.
+     * <p><b>NOTE: </b> The observer is notified when this method is called. If more than 50 pixels are changed, it
+     * might be better to use the deep copy method.</p>
      * @param row The row of the pixel
      * @param column The column of the pixel
      * @param channel The channel of the pixel
      * @param value The value to be set
      * @throws Exception If the row, column, or channel is out of bounds for the image
+     *
      */
     public void setPixel(int row, int column, int channel, int value) throws Exception {
         if(!isInBounds(row, column, channel)) {
@@ -187,6 +202,8 @@ public class Image {
 
     /**
      * This method sets the pixel value at the specified row and column. This method is used for grayscale images.
+     * <p><b>NOTE: </b> The observer is notified when this method is called. If more than 50 pixels are changed, it
+     * might be better to use the deep copy method.</p>
      * @param row The row of the pixel
      * @param column The column of the pixel
      * @param value The value to be set
@@ -247,6 +264,7 @@ public class Image {
 
     /**
      * This method sets the pixel array of the image.
+     * <p><b>NOTE: </b> The observer is notified when this method is called.
      * @param channelData The pixel array to be set
      * @param channel The channel of the pixel array
      */
@@ -266,6 +284,7 @@ public class Image {
                 pixels[i][j][channel] = limitValue(channelData[i * columns + j]);
             }
         }
+        notifyObserver();
     }
 
     /**
@@ -341,9 +360,9 @@ public class Image {
         if(colorSpace.toLowerCase(Locale.US).equals("hsv")){
             var image = getOpenCvMat();
             Imgproc.cvtColor(image, image, Imgproc.COLOR_BGR2HSV);
-            var channels = new ArrayList<Mat>();
+            var channels = new ArrayList<Mat>(3);
             Core.split(image, channels);
-            return channels.get(columns);
+            return channels.get(channel);
 
         }
         else if(colorSpace.toLowerCase(Locale.US).equals("rgb")){
@@ -437,6 +456,7 @@ public class Image {
 
     /**
      * Method that performs a deep copy from one image object into the current image.
+     * <p><b>NOTE: </b> The observer is notified when this method is called.</p>
      * @param other Image to be copied.
      */
     public void deepCopy(Image other){
@@ -464,6 +484,7 @@ public class Image {
         observers.add(observer);
     }
 
+
     /**
      * This method is used to remove an observer from the image object.
      * @param observer The observer to be removed
@@ -478,5 +499,17 @@ public class Image {
      */
     private void notifyObserver() {
         observers.forEach(observer -> observer.accept(this));
+    }
+
+    /**
+     * This method is used to close the image object.
+     */
+    @Override
+    public void close() {
+        for(var o : observers){
+            removeObserver(o);
+        }
+        observers.clear();
+        pixels = null;
     }
 }
