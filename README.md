@@ -2,12 +2,12 @@
 <dl>
     <dt><h4>Installation</h4></dt>
     <dd>
-        <p><code>$ java -version</code></p>
-        <p><code>openjdk version "17.0.9" 2023-10-17
-OpenJDK Runtime Environment (build 17.0.9+9-Ubuntu-122.04)
-OpenJDK 64-Bit Server VM (build 17.0.9+9-Ubuntu-122.04, mixed mode, sharing)</code>
-        </p>
-
+        <p>The jar file can only be executed on a system with Java 17+</p>
+        <code>$ java -version</code>
+        <p>The output of the command should look something like this:</p>
+        <code>openjdk version "17.0.9" 2023-10-17</code>
+        <code>OpenJDK Runtime Environment (build 17.0.9+9-Ubuntu-122.04)</code>
+        <code>OpenJDK 64-Bit Server VM (build 17.0.9+9-Ubuntu-122.04, mixed mode, sharing)</code>
     </dd>
 </dl>
 <dl>
