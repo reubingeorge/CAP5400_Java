@@ -1,5 +1,6 @@
 package com.CAP5400.Image;
 
+import nu.pattern.OpenCV;
 import org.CAP5400.Image.Image;
 import org.CAP5400.Exceptions.ImageOutOfBoundsException;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ public class ImageTest {
     @Test
     public void testImageConstructors(){
         try {
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             assertThat(grayscaleImage.getChannels()).isEqualTo(1);
             assertThat(grayscaleImage.getRows()).isEqualTo(512);
@@ -69,6 +71,7 @@ public class ImageTest {
 
     @Test
     public void testBounds(){
+        OpenCV.loadLocally();
         var emptyGrayscaleImage = new Image(512, 512);
         var thrownGrayscaleImageChannel = assertThrows(ImageOutOfBoundsException.class,
                 () -> emptyGrayscaleImage.getPixel(0, 0, 2),
@@ -91,6 +94,7 @@ public class ImageTest {
     @Test
     public void testGetAndSetChannels(){
         try{
+            OpenCV.loadLocally();
             var colorImage = new Image("baboon.ppm");
             var colorImageCopy = new Image(colorImage.getRows(), colorImage.getColumns(), colorImage.getChannels());
             var channel1 = colorImage.getChannel(0);
@@ -112,6 +116,7 @@ public class ImageTest {
     @Test
     public void testImageSimilarityWithNoFilters(){
         try {
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             grayscaleImage.save("baboon_saved.pgm");
             var savedGrayscaleImage = new Image("baboon_saved.pgm");
@@ -130,6 +135,7 @@ public class ImageTest {
     }
 
     private boolean areSameImages(Image leftImage, Image rightImage){
+        OpenCV.loadLocally();
         if(leftImage.getRows() != rightImage.getRows()){ return false; }
         if(leftImage.getColumns() != rightImage.getColumns()){ return false; }
         if(leftImage.getChannels() != rightImage.getChannels()){ return false; }

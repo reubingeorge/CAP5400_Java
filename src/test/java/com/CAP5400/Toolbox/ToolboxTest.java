@@ -1,5 +1,6 @@
 package com.CAP5400.Toolbox;
 
+import nu.pattern.OpenCV;
 import org.CAP5400.Image.Image;
 import static org.CAP5400.Image.Image.MAX_RGB;
 import static org.CAP5400.Toolbox.Toolbox.*;
@@ -23,6 +24,7 @@ public class ToolboxTest {
     @Test
     public void testAddGreySuccess(){
         try {
+            OpenCV.loadLocally();
             var image = new Image("baboon.pgm");
             var region = new ROI(image, 0, 0, 200, 200);
             var additiveValue = 50;
@@ -43,6 +45,7 @@ public class ToolboxTest {
     @Test
     public void testAddGreyFailure(){
         try {
+            OpenCV.loadLocally();
             var image = new Image("baboon.ppm");
             var region = new ROI(image, 0, 0, 200, 200);
             var additiveValue = 50;
@@ -56,6 +59,7 @@ public class ToolboxTest {
     @Test
     public void testAddBrightnessColorImage(){
         try {
+            OpenCV.loadLocally();
             var colorImage = new Image("baboon.ppm");
             var colorRegion1 = new ROI(colorImage, 0, 0, 200, 200);
             var additiveValue1 = 40;
@@ -93,6 +97,7 @@ public class ToolboxTest {
     @Test
     public void testAddBrightnessGreyscaleImage(){
         try {
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             var grayscaleRegion1 = new ROI(grayscaleImage, 0, 0, 200, 200);
             var additiveValue1 = 40;
@@ -130,6 +135,7 @@ public class ToolboxTest {
     @Test
     public void testDecreaseBrightnessColorImage(){
         try {
+            OpenCV.loadLocally();
             var colorImage = new Image("baboon.ppm");
             var colorRegion1 = new ROI(colorImage, 0, 0, 200, 200);
             var threshold1 = 200;
@@ -158,6 +164,7 @@ public class ToolboxTest {
     @Test
     public void testDecreaseBrightnessGrayscaleImage(){
         try {
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             var grayscaleRegion = new ROI(grayscaleImage, 0, 0, 200, 200);
             var threshold1 = 200;
@@ -185,6 +192,7 @@ public class ToolboxTest {
     @Test
     public void testDecreaseBrightnessFailure(){
         try {
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             var grayscaleRegion = new ROI(grayscaleImage, 0, 0, 200, 200);
             var threshold1 = 500;
@@ -201,6 +209,7 @@ public class ToolboxTest {
     @Test
     public void testBinarizeSuccess(){
         try {
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             var grayscaleRegion = new ROI(grayscaleImage, 0, 0, 200, 200);
             var threshold = 100;
@@ -217,6 +226,7 @@ public class ToolboxTest {
     @Test
     public void testBinarizeFailure(){
         try {
+            OpenCV.loadLocally();
             var colorImage = new Image("baboon.ppm");
             var colorRegion = new ROI(colorImage, 0, 0, 200, 200);
             var threshold = 100;
@@ -240,6 +250,7 @@ public class ToolboxTest {
     @Test
     public void testScaleGrayscaleSuccess(){
         try {
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             var grayscaleRegion = new ROI(grayscaleImage, 0, 0, 200, 200);
             float grayscaleRatio = 1.0f;
@@ -260,6 +271,7 @@ public class ToolboxTest {
     @Test
     public void testScaleColorSuccess(){
         try {
+            OpenCV.loadLocally();
             var colorImage = new Image("baboon.ppm");
             var colorRegion = new ROI(colorImage, 0, 0, 200, 200);
             float colorRatio = 1.0f;
@@ -284,6 +296,7 @@ public class ToolboxTest {
     @Test
     public void testScaleFailure(){
         try {
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             var grayscaleRegion = new ROI(grayscaleImage, 0, 0, 200, 200);
             float grayscaleRatio = 0.5f;
@@ -299,6 +312,7 @@ public class ToolboxTest {
     @Test
     public void testRotateSuccess(){
         try {
+            OpenCV.loadLocally();
             var colorImage = new Image("baboon.pgm");
             var colorRegion = new ROI(colorImage, 0, 0, 200, 200);
             rotate(colorRegion, 360);
@@ -320,6 +334,7 @@ public class ToolboxTest {
     @Test
     public void testRotateFailure(){
         try {
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             var grayscaleRegion = new ROI(grayscaleImage, 0, 0, 200, 300);
             var thrown = assertThrows(

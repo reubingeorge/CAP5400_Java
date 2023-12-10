@@ -1,5 +1,6 @@
 package com.CAP5400.RegionOfInterest;
 
+import nu.pattern.OpenCV;
 import org.CAP5400.Image.Image;
 import org.CAP5400.RegionOfInterest.ROI;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ public class RoiTest {
     @Test
     public void testSquareRoiSuccess() {
         try{
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             var grayscaleRegion = new ROI(grayscaleImage, 0, 0, 200, 200);
             grayscaleRegion.enforceSquareDimensions(true);
@@ -25,6 +27,7 @@ public class RoiTest {
     @Test
     public void testSquareRoiFailure() {
         try{
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             var grayscaleRegion = new ROI(grayscaleImage, 0, 0, 200, 300);
             var thrownGrayscaleImageChannel = assertThrows(IllegalArgumentException.class,
@@ -46,6 +49,7 @@ public class RoiTest {
     @Test
     public void testBaseTwoRoiSuccess() {
         try{
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             var grayscaleRegion = new ROI(grayscaleImage, 0, 0, 128, 128);
             grayscaleRegion.enforceBaseTwoDimensions(true);
@@ -61,6 +65,7 @@ public class RoiTest {
     @Test
     public void testBaseTwoRoiFailure() {
         try{
+            OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
             var grayscaleRegion = new ROI(grayscaleImage, 0, 0, 200, 300);
             var thrownGrayscaleImageChannel = assertThrows(IllegalArgumentException.class,
