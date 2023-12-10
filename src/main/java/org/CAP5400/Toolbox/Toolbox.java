@@ -204,6 +204,7 @@ public class Toolbox {
      * This method applies histogram equalization to a region of interest (ROI) within an image. The equalization is
      * performed separately on each channel for color images.
      * @param region Region of interest on which this filter will be applied.
+     * @param colorSpace The color space in which to perform histogram equalization. It can be either "RGB" or "HSV".
      * @throws Exception Thrown error if any problems are detected!
      */
     public static void histogramEqualizationAll(@NotNull ROI region,
@@ -286,6 +287,15 @@ public class Toolbox {
         histogram.close();
     }
 
+    /**
+     * This method applies a low-pass filter to a region of interest (ROI) within an image. The filter is applied to
+     * each channel independently for color images.
+     * @param region Region of interest on which this filter will be applied.
+     * @param colorspace The color space in which to perform the low-pass filter. It can be either "RGB" or "HSV".
+     * @param channel The index of the channel to which the low-pass filter is applied.
+     * @param filterRadius The radius of the low-pass filter.
+     * @throws Exception Thrown error if any problems are detected!
+     */
     public static void lowPassFilter(
             @NotNull ROI region,
             @NotNull @NotBlank String colorspace,
@@ -294,10 +304,17 @@ public class Toolbox {
         try(var fourier = new Fourier(region, colorspace, channel)){
             fourier.applyFilter(filterRadius, 0, "Low Pass");
         }
-
-
     }
 
+    /**
+     * This method applies a high-pass filter to a region of interest (ROI) within an image. The filter is applied to
+     * each channel independently for color images.
+     * @param region Region of interest on which this filter will be applied.
+     * @param colorspace The color space in which to perform the high-pass filter. It can be either "RGB" or "HSV".
+     * @param channel The index of the channel to which the high-pass filter is applied.
+     * @param filterRadius The radius of the high-pass filter.
+     * @throws Exception Thrown error if any problems are detected!
+     */
     public static void highPassFilter(
             @NotNull ROI region,
             @NotNull @NotBlank String colorspace,
@@ -308,6 +325,16 @@ public class Toolbox {
         }
     }
 
+    /**
+     * This method applies a band-pass filter to a region of interest (ROI) within an image. The filter is applied to
+     * each channel independently for color images.
+     * @param region Region of interest on which this filter will be applied.
+     * @param colorspace The color space in which to perform the band-pass filter. It can be either "RGB" or "HSV".
+     * @param channel The index of the channel to which the band-pass filter is applied.
+     * @param innerFilterRadius The radius of the inner band-pass filter.
+     * @param outerFilterRadius The radius of the outer band-pass filter.
+     * @throws Exception Thrown error if any problems are detected!
+     */
     public static void bandStopFilter(
             @NotNull ROI region,
             @NotNull @NotBlank String colorspace,
@@ -323,6 +350,16 @@ public class Toolbox {
         }
     }
 
+    /**
+     * This method sharpens the edges of a region of interest (ROI) within an image. The sharpening is performed
+     * independently on each channel for color images using an unsharp mask.
+     * @param region Region of interest on which this filter will be applied.
+     * @param colorspace The color space in which to perform the sharpening. It can be either "RGB" or "HSV".
+     * @param channel The index of the channel to which the sharpening is applied.
+     * @param filterRadius The size of the filter used to perform the sharpening.
+     * @param sharpeningFactor The sharpening factor (0.0 to 1.0).
+     * @throws Exception Thrown error if any problems are detected!
+     */
     public static void sharpenEdge(@NotNull ROI region,
                                    @NotNull @NotBlank String colorspace,
                                    @IntRange(from = 0, to = 2) int channel,

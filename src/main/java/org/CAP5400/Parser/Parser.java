@@ -200,7 +200,6 @@ public class Parser {
                                 errorMessage = e1.getCause().getMessage();
                             }
                             System.out.printf("\033[1m%15s\033[0m%s\n","Reason: ", errorMessage);
-                            e1.printStackTrace();
                         }
                     }
                     sourceImage.save(targetImageName);

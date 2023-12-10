@@ -11,6 +11,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class contains miscellaneous methods. These methods are used to perform various tasks such as getting the
+ * extension of a file, generating a random string, getting the current date and time, deleting a file, etc.
+ * @version 1.0
+ * @author Reubin George
+ */
 public class Misc {
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final String trackerFilename = "tracker.txt";
