@@ -2,14 +2,10 @@
 <dl>
     <dt><h4>Installation</h4></dt>
     <dd>
-        <code>
-$ java -version
-        </code>
-        <code>
-openjdk version "17.0.9" 2023-10-17
+        <code>$ java -version</code>
+<code>openjdk version "17.0.9" 2023-10-17
 OpenJDK Runtime Environment (build 17.0.9+9-Ubuntu-122.04)
-OpenJDK 64-Bit Server VM (build 17.0.9+9-Ubuntu-122.04, mixed mode, sharing)
-        </code>
+OpenJDK 64-Bit Server VM (build 17.0.9+9-Ubuntu-122.04, mixed mode, sharing)</code>
     </dd>
 </dl>
 <dl>
