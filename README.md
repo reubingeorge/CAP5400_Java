@@ -70,10 +70,25 @@ Here is the list of functions names and parameter that is needed for the paramet
     <dt><h4>Results</h4></dt>
     <dd>
 
-| Grayscale Baboon          | Color Baboon              | Grayscale Mountain | Grayscale Slope |
-|---------------------------|---------------------------|--------------------|-----------------|
-| ![baboon.pgm](baboon.pgm) | ![baboon.ppm](baboon.ppm) |                    |                 |
+| Grayscale Baboon                        | Color Baboon                                | Grayscale Mountain                          | Grayscale Slope                       |
+|-----------------------------------------|---------------------------------------------|---------------------------------------------|---------------------------------------|
+| ![baboon.jpg](readme-pics%2Fbaboon.jpg) | ![baboon_1.jpg](readme-pics%2Fbaboon_1.jpg) | ![mountain.jpg](readme-pics%2Fmountain.jpg) | ![slope.jpg](readme-pics%2Fslope.jpg) |
 
+
+| Rotate 90                                                    | Rotate 180                                                     | Rotate 270                                                     |
+|--------------------------------------------------------------|----------------------------------------------------------------|----------------------------------------------------------------|
+| ```baboon.pgm baboon_ro90.pgm 1 200 200 200 200 rotate 90``` | ```baboon.pgm baboon_ro180.pgm 1 200 200 200 200 rotate 180``` | ```baboon.pgm baboon_ro270.pgm 1 200 200 200 200 rotate 270``` |
+| ![baboon_ro90.jpg](readme-pics%2Fbaboon_ro90.jpg)            | ![baboon_ro180.jpg](readme-pics%2Fbaboon_ro180.jpg)            | ![baboon_ro270.jpg](readme-pics%2Fbaboon_ro270.jpg)            |
+| ```baboon.ppm baboon_ro90.ppm 1 200 200 200 200 rotate 90``` | ```baboon.ppm baboon_ro180.ppm 1 200 200 200 200 rotate 180``` | ```baboon.ppm baboon_ro270.ppm 1 200 200 200 200 rotate 270``` |
+| ![baboon_ro90_1.jpg](readme-pics%2Fbaboon_ro90_1.jpg)        | ![baboon_ro180_1.jpg](readme-pics%2Fbaboon_ro180_1.jpg)        | ![baboon_ro270_1.jpg](readme-pics%2Fbaboon_ro270_1.jpg)        |
+
+
+| Scale                                                        | Scale w/ Rotate 90                                                                        | Scale w/ Rotate 180                                                                         | Scale w/ Rotate 270                                                                         |
+|--------------------------------------------------------------|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| ```baboon.pgm baboon_sc15.pgm 1 200 200 200 200 scale 1.5``` | ```baboon.pgm baboon_sr15-90.pgm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 90``` | ```baboon.pgm baboon_sr15-180.pgm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 180``` | ```baboon.pgm baboon_sr15-270.pgm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 270``` |
+| ![baboon_sc15.jpg](readme-pics%2Fbaboon_sc15.jpg)            | ![baboon_sr15-90.jpg](readme-pics%2Fbaboon_sr15-90.jpg)                                   | ![baboon_sr15-180.jpg](readme-pics%2Fbaboon_sr15-180.jpg)                                   | ![baboon_sr15-270.jpg](readme-pics%2Fbaboon_sr15-270.jpg)                                   |
+| ```baboon.ppm baboon_sc15.ppm 1 200 200 200 200 scale 1.5``` | ```baboon.ppm baboon_sr15-90.ppm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 90``` | ```baboon.ppm baboon_sr15-180.ppm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 180``` | ```baboon.ppm baboon_sr15-270.ppm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 270``` |
+| ![baboon_sc15_1.jpg](readme-pics%2Fbaboon_sc15_1.jpg)        | ![baboon_sr15-90_1.jpg](readme-pics%2Fbaboon_sr15-90_1.jpg)                               | ![baboon_sr15-180_1.jpg](readme-pics%2Fbaboon_sr15-180_1.jpg)                               | ![baboon_sr15-270_1.jpg](readme-pics%2Fbaboon_sr15-270_1.jpg)                               |
 </dd>
 </dl>
 
