@@ -22,6 +22,7 @@ Use the last command to set the needed version of Java
 If you are not using an IDE but using a terminal instead, use the following commands:
 
 ```console
+cd target
 java -jar CAP5400.jar parameters.txt
 ```
 </dd>
