@@ -18,6 +18,12 @@ sudo apt-get install openjdk-17-jdk
 sudo update-alternatives --config java
 ```
 Use the last command to set the needed version of Java
+
+If you are not using an IDE but using a terminal instead, use the following commands:
+
+```console
+java -jar CAP5400.jar parameters.txt
+```
 </dd>
 </dl>
 <dl>
@@ -106,7 +112,6 @@ Here is the list of functions names and parameter that is needed for the paramet
 | ![hist_20231211_033057_34OYld.jpg](readme-pics%2Fhist_20231211_033057_34OYld.jpg) ![hist_20231211_033058_EbhbmA.jpg](readme-pics%2Fhist_20231211_033058_EbhbmA.jpg) | <center>![hist_20231211_033057_BgWD9y.jpg](readme-pics%2Fhist_20231211_033057_BgWD9y.jpg) ![hist_20231211_033057_iX7Lxp.jpg](readme-pics%2Fhist_20231211_033057_iX7Lxp.jpg)</center> |
 
 
-
 |                               Histogram Equalization                                |                                       Histogram Equalization w/ Rotate 90                                        |                                        Histogram Equalization w/ Rotate 180                                        |                                        Histogram Equalization w/ Rotate 270                                        |
 |:-----------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|
 |    ```baboon.pgm baboon_he.pgm 1 200 200 200 200 histogramEqualizationAll rgb```    |   ```baboon.pgm baboon_he_ro90.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 90```   |   ```baboon.pgm baboon_he_ro180.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 180```   |   ```baboon.pgm baboon_he_ro270.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 270```   |
@@ -124,7 +129,6 @@ Here is the list of functions names and parameter that is needed for the paramet
 | ![hist_20231211_033058_l8lU13.jpg](readme-pics%2Fhist_20231211_033058_l8lU13.jpg)![hist_20231211_033058_XVjGix.jpg](readme-pics%2Fhist_20231211_033058_XVjGix.jpg) | ![hist_20231211_033059_HgZIek.jpg](readme-pics%2Fhist_20231211_033059_HgZIek.jpg) ![hist_20231211_033059_r7CD9L.jpg](readme-pics%2Fhist_20231211_033059_r7CD9L.jpg) | ![hist_20231211_033058_XAGVZn.jpg](readme-pics%2Fhist_20231211_033058_XAGVZn.jpg)![hist_20231211_033058_xSis7n.jpg](readme-pics%2Fhist_20231211_033058_xSis7n.jpg) |
 
 
-
 |                                                                     Low Pass Filter                                                                     |                                                                      High Pass Filter                                                                      |                                                                         Band Stop Filter                                                                         |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |                                         ```baboon.pgm baboon_lp.pgm 1 128 128 256 256 lowPassFilter rgb 0 30```                                         |                                          ```baboon.pgm baboon_hp.pgm 1 128 128 256 256 highPassFilter rgb 0 15```                                          |                                           ```baboon.pgm baboon_bs.pgm 1 128 128 256 256 bandStopFilter rgb 0 10 30```                                            |
@@ -138,7 +142,6 @@ Here is the list of functions names and parameter that is needed for the paramet
 |                                            ```baboon.pgm baboon_um3003.pgm 1 0 0 512 512 sharpenEdge rgb 0 30 0.3```                                            |                                            ```baboon.pgm baboon_um6003.pgm 1 0 0 512 512 sharpenEdge rgb 0 60 0.3```                                            |                                           ```baboon.pgm baboon_um12003.pgm 1 0 0 512 512 sharpenEdge rgb 0 120 0.3```                                            |
 |                                                      ![baboon_um3003.jpg](readme-pics%2Fbaboon_um3003.jpg)                                                      |                                                      ![baboon_um6003.jpg](readme-pics%2Fbaboon_um6003.jpg)                                                      |                                                     ![baboon_um12003.jpg](readme-pics%2Fbaboon_um12003.jpg)                                                      |
 | ![mag_20231211_033102_YtgH5s.jpg](readme-pics%2Fmag_20231211_033102_YtgH5s.jpg) ![mag_20231211_033102_M6eW44.jpg](readme-pics%2Fmag_20231211_033102_M6eW44.jpg) | ![mag_20231211_033102_Gs7wBf.jpg](readme-pics%2Fmag_20231211_033102_Gs7wBf.jpg) ![mag_20231211_033102_14aRAJ.jpg](readme-pics%2Fmag_20231211_033102_14aRAJ.jpg) | ![mag_20231211_033102_oM08Yh.jpg](readme-pics%2Fmag_20231211_033102_oM08Yh.jpg)  ![mag_20231211_033102_0Nq9Ii.jpg](readme-pics%2Fmag_20231211_033102_0Nq9Ii.jpg) |
-
 
 
 </dd>
