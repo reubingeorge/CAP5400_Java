@@ -77,7 +77,7 @@ public class Histogram implements AutoCloseable{
     private void computeBin() throws Exception {
 
         this.data = new ArrayList<>();
-        for(var i = 0; i < region.getChannels(); i++){
+        for(var i = 0; i < region.getNumChannels(); i++){
             data.add(new HashMap<>());
             var maxIntensity = getMaxChannelValue(i);
             for(var j = 0; j <= maxIntensity; j++){
@@ -90,22 +90,22 @@ public class Histogram implements AutoCloseable{
             Imgproc.cvtColor(region.getRegionImage().getOpenCvMat(), hsvImage, Imgproc.COLOR_BGR2HSV);
         }
 
-            for(int i = 0; i < region.getTotalX(); i++){
-                for(int j = 0; j < region.getTotalY(); j++){
-                    for(int k = 0; k < region.getChannels(); k++){
-                        var point = new Point(i, j);
-                        int intensity;
-                        if(colorspace.equals("rgb")){
-                            intensity = region.getRegionImage().getPixel(i, j, k);
-                        }
-                        else {
-                            intensity = (int) hsvImage.get(i, j)[k];
-                        }
-                        this.data.get(k).get(intensity).add(point);
+        for(int i = 0; i < region.getTotalX(); i++){
+            for(int j = 0; j < region.getTotalY(); j++){
+                for(int k = 0; k < region.getNumChannels(); k++){
+                    var point = new Point(i, j);
+                    int intensity;
+                    if(colorspace.equals("rgb")){
+                        intensity = region.getRegionImage().getPixel(i, j, k);
                     }
+                    else {
+                        intensity = (int) hsvImage.get(i, j)[k];
+                    }
+                    this.data.get(k).get(intensity).add(point);
                 }
             }
-            hsvImage.release();
+        }
+        hsvImage.release();
     }
 
 /**
@@ -222,7 +222,7 @@ public class Histogram implements AutoCloseable{
      * @throws Exception Exception thrown if an error occurs.
      */
     public void performEqualization() throws Exception {
-        for(int i = 0; i < region.getChannels(); i++){
+        for(int i = 0; i < region.getNumChannels(); i++){
             performEqualization(i);
         }
     }
@@ -250,9 +250,9 @@ public class Histogram implements AutoCloseable{
             throw new IllegalArgumentException("The minStretch must be less than the maxStretch value!");
         }
 
-        if(channel > region.getChannels()){
+        if(channel > region.getNumChannels()){
             throw new IllegalArgumentException("The channel index entered: " + channel +
-                    "exceeds the max number of channels ("+region.getChannels()+")");
+                    "exceeds the max number of channels ("+region.getNumChannels()+")");
         }
 
         saveChannelHistogram(channel);
@@ -304,7 +304,8 @@ public class Histogram implements AutoCloseable{
 
         }
 
-        var image = new Image(region.getSourceImage());
+        var image = new Image(region.getRegionImage());
+
         for(int i = 0; i <= maxChannelValue; i++){
             for(var point : stretchedBin.get(i)){
                 var x = point.x;
@@ -312,6 +313,7 @@ public class Histogram implements AutoCloseable{
                 image.setPixel(x, y, channel, i);
             }
         }
+
         region.getRegionImage().deepCopy(image);
 
 
@@ -328,7 +330,7 @@ public class Histogram implements AutoCloseable{
     public void performStretch(
             @IntRange(from = 0, to = MAX_RGB) int minStretch,
             @IntRange(from = 0, to = MAX_RGB) int maxStretch) throws Exception {
-        for(int i = 0; i < region.getChannels(); i++){
+        for(int i = 0; i < region.getNumChannels(); i++){
             performStretch(minStretch, maxStretch, i);
         }
     }

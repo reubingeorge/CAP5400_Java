@@ -83,8 +83,8 @@ public class ROI {
      * Method to get the number of channels in the region of interest.
      * @return The number of channels in the region of interest.
      */
-    public int getChannels() {
-        return this.sourceImage.getChannels();
+    public int getNumChannels() {
+        return this.sourceImage.getNumChannels();
     }
 
     /**
@@ -109,11 +109,11 @@ public class ROI {
         this.startY = startY;
         this.totalX = totalX;
         this.totalY = totalY;
-        this.regionImage = new Image(totalX, totalY, getChannels());
+        this.regionImage = new Image(totalX, totalY, getNumChannels());
 
         for(int i = 0; i < totalX; i++) {
             for(int j = 0; j < totalY; j++) {
-                for(int k = 0; k < this.sourceImage.getChannels(); k++) {
+                for(int k = 0; k < this.sourceImage.getNumChannels(); k++) {
                     var value = this.sourceImage.getPixel(i + startX, j + startY, k);
                     this.regionImage.setPixel(i, j, k, value);
                 }
@@ -190,7 +190,7 @@ public class ROI {
     public void applyModifications() throws Exception {
         for(int i = getStartX(); i < getEndX(); i++){
             for(int j = getStartY(); j < getEndY(); j++){
-                for(int k = 0; k < sourceImage.getChannels(); k++){
+                for(int k = 0; k < sourceImage.getNumChannels(); k++){
                     var newValue = regionImage.getPixel(i - startX, j - startY, k);
                     sourceImage.setPixel(i, j, k, newValue);
                 }

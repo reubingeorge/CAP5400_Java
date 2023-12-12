@@ -18,11 +18,23 @@ baboon.pgm baboon_hs.pgm 1 200 200 200 200 histogramStretchAll 0 255
 baboon.pgm baboon_hs_ro90.pgm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 90
 baboon.pgm baboon_hs_ro180.pgm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 180
 baboon.pgm baboon_hs_ro270.pgm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 270
+baboon.ppm baboon_hs.ppm 1 200 200 200 200 histogramStretchAll 0 255
+baboon.ppm baboon_hs_ro90.ppm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 90
+baboon.ppm baboon_hs_ro180.ppm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 180
+baboon.ppm baboon_hs_ro270.ppm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 270
 slope.pgm slope_he.pgm 1 25 25 484 750 histogramEqualizationAll rgb
 baboon.pgm baboon_he.pgm 1 200 200 200 200 histogramEqualizationAll rgb
 baboon.pgm baboon_he_ro90.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 90
 baboon.pgm baboon_he_ro180.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 180
 baboon.pgm baboon_he_ro270.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 270
+baboon.ppm baboon_he_1.ppm 1 200 200 200 200 histogramEqualizationAll rgb
+baboon.ppm baboon_he_ro90_1.ppm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 90
+baboon.ppm baboon_he_ro180_1.ppm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 180
+baboon.ppm baboon_he_ro270_1.ppm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 270
+baboon.ppm baboon_he_hsv_1.ppm 1 200 200 200 200 histogramEqualizationAll hsv
+baboon.ppm baboon_he_ro90_hsv.ppm 2 200 200 200 200 histogramEqualizationAll hsv 200 200 200 200 rotate 90
+baboon.ppm baboon_he_ro180_hsv.ppm 2 200 200 200 200 histogramEqualizationAll hsv 200 200 200 200 rotate 180
+baboon.ppm baboon_he_ro270_hsv.ppm 2 200 200 200 200 histogramEqualizationAll hsv 200 200 200 200 rotate 270
 mountain.pgm mountain_he.pgm 1 10 10 321 492 histogramEqualizationAll rgb
 slope.pgm slope_he.pgm 1 25 25 484 750 histogramEqualizationAll
 mountain.pgm mountain_he_th50.pgm 1 10 10 321 492 thresholdHistogramEqualization 50 0

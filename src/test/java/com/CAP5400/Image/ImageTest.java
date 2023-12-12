@@ -18,12 +18,12 @@ public class ImageTest {
         try {
             OpenCV.loadLocally();
             var grayscaleImage = new Image("baboon.pgm");
-            assertThat(grayscaleImage.getChannels()).isEqualTo(1);
+            assertThat(grayscaleImage.getNumChannels()).isEqualTo(1);
             assertThat(grayscaleImage.getRows()).isEqualTo(512);
             assertThat(grayscaleImage.getColumns()).isEqualTo(512);
 
             var colorImage = new Image("baboon.ppm");
-            assertThat(colorImage.getChannels()).isEqualTo(3);
+            assertThat(colorImage.getNumChannels()).isEqualTo(3);
             assertThat(colorImage.getRows()).isEqualTo(512);
             assertThat(colorImage.getColumns()).isEqualTo(512);
 
@@ -32,7 +32,7 @@ public class ImageTest {
             }
 
             var emptyGrayscaleImage = new Image(512, 512);
-            assertThat(emptyGrayscaleImage.getChannels()).isEqualTo(1);
+            assertThat(emptyGrayscaleImage.getNumChannels()).isEqualTo(1);
             assertThat(emptyGrayscaleImage.getRows()).isEqualTo(512);
             assertThat(emptyGrayscaleImage.getColumns()).isEqualTo(512);
             for(int i = 0; i < 512; i++){
@@ -43,7 +43,7 @@ public class ImageTest {
 
 
             var emptyColorImage = new Image(512, 512, 3);
-            assertThat(emptyColorImage.getChannels()).isEqualTo(3);
+            assertThat(emptyColorImage.getNumChannels()).isEqualTo(3);
             assertThat(emptyColorImage.getRows()).isEqualTo(512);
             assertThat(emptyColorImage.getColumns()).isEqualTo(512);
             for(int i = 0; i < 512; i++){
@@ -96,7 +96,7 @@ public class ImageTest {
         try{
             OpenCV.loadLocally();
             var colorImage = new Image("baboon.ppm");
-            var colorImageCopy = new Image(colorImage.getRows(), colorImage.getColumns(), colorImage.getChannels());
+            var colorImageCopy = new Image(colorImage.getRows(), colorImage.getColumns(), colorImage.getNumChannels());
             var channel1 = colorImage.getChannel(0);
             var channel2 = colorImage.getChannel(1);
             var channel3 = colorImage.getChannel(2);
@@ -138,12 +138,12 @@ public class ImageTest {
         OpenCV.loadLocally();
         if(leftImage.getRows() != rightImage.getRows()){ return false; }
         if(leftImage.getColumns() != rightImage.getColumns()){ return false; }
-        if(leftImage.getChannels() != rightImage.getChannels()){ return false; }
+        if(leftImage.getNumChannels() != rightImage.getNumChannels()){ return false; }
         if(leftImage.isColor() != rightImage.isColor()) { return false; }
 
         for(int i = 0; i < leftImage.getRows(); i++){
             for(int j = 0; j < rightImage.getRows(); j++){
-                for(int k = 0; k < leftImage.getChannels(); k++){
+                for(int k = 0; k < leftImage.getNumChannels(); k++){
                     try{
                         var leftPixel = leftImage.getPixel(i, j, k);
                         var rightPixel = rightImage.getPixel(i, j, k);

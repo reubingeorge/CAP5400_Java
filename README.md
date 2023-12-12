@@ -70,25 +70,60 @@ Here is the list of functions names and parameter that is needed for the paramet
     <dt><h4>Results</h4></dt>
     <dd>
 
-| Grayscale Baboon                        | Color Baboon                                | Grayscale Mountain                          | Grayscale Slope                       |
-|-----------------------------------------|---------------------------------------------|---------------------------------------------|---------------------------------------|
+|            Grayscale Baboon             |                Color Baboon                 |             Grayscale Mountain              |            Grayscale Slope            |
+|:---------------------------------------:|:-------------------------------------------:|:-------------------------------------------:|:-------------------------------------:|
 | ![baboon.jpg](readme-pics%2Fbaboon.jpg) | ![baboon_1.jpg](readme-pics%2Fbaboon_1.jpg) | ![mountain.jpg](readme-pics%2Fmountain.jpg) | ![slope.jpg](readme-pics%2Fslope.jpg) |
 
 
-| Rotate 90                                                    | Rotate 180                                                     | Rotate 270                                                     |
-|--------------------------------------------------------------|----------------------------------------------------------------|----------------------------------------------------------------|
+|                          Rotate 90                           |                           Rotate 180                           |                           Rotate 270                           |
+|:------------------------------------------------------------:|:--------------------------------------------------------------:|:--------------------------------------------------------------:|
 | ```baboon.pgm baboon_ro90.pgm 1 200 200 200 200 rotate 90``` | ```baboon.pgm baboon_ro180.pgm 1 200 200 200 200 rotate 180``` | ```baboon.pgm baboon_ro270.pgm 1 200 200 200 200 rotate 270``` |
-| ![baboon_ro90.jpg](readme-pics%2Fbaboon_ro90.jpg)            | ![baboon_ro180.jpg](readme-pics%2Fbaboon_ro180.jpg)            | ![baboon_ro270.jpg](readme-pics%2Fbaboon_ro270.jpg)            |
+|      ![baboon_ro90.jpg](readme-pics%2Fbaboon_ro90.jpg)       |      ![baboon_ro180.jpg](readme-pics%2Fbaboon_ro180.jpg)       |      ![baboon_ro270.jpg](readme-pics%2Fbaboon_ro270.jpg)       |
 | ```baboon.ppm baboon_ro90.ppm 1 200 200 200 200 rotate 90``` | ```baboon.ppm baboon_ro180.ppm 1 200 200 200 200 rotate 180``` | ```baboon.ppm baboon_ro270.ppm 1 200 200 200 200 rotate 270``` |
-| ![baboon_ro90_1.jpg](readme-pics%2Fbaboon_ro90_1.jpg)        | ![baboon_ro180_1.jpg](readme-pics%2Fbaboon_ro180_1.jpg)        | ![baboon_ro270_1.jpg](readme-pics%2Fbaboon_ro270_1.jpg)        |
+|    ![baboon_ro90_1.jpg](readme-pics%2Fbaboon_ro90_1.jpg)     |    ![baboon_ro180_1.jpg](readme-pics%2Fbaboon_ro180_1.jpg)     |    ![baboon_ro270_1.jpg](readme-pics%2Fbaboon_ro270_1.jpg)     |
 
 
-| Scale                                                        | Scale w/ Rotate 90                                                                        | Scale w/ Rotate 180                                                                         | Scale w/ Rotate 270                                                                         |
-|--------------------------------------------------------------|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+|                            Scale                             |                                    Scale w/ Rotate 90                                     |                                     Scale w/ Rotate 180                                     |                                     Scale w/ Rotate 270                                     |
+|:------------------------------------------------------------:|:-----------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|
 | ```baboon.pgm baboon_sc15.pgm 1 200 200 200 200 scale 1.5``` | ```baboon.pgm baboon_sr15-90.pgm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 90``` | ```baboon.pgm baboon_sr15-180.pgm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 180``` | ```baboon.pgm baboon_sr15-270.pgm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 270``` |
-| ![baboon_sc15.jpg](readme-pics%2Fbaboon_sc15.jpg)            | ![baboon_sr15-90.jpg](readme-pics%2Fbaboon_sr15-90.jpg)                                   | ![baboon_sr15-180.jpg](readme-pics%2Fbaboon_sr15-180.jpg)                                   | ![baboon_sr15-270.jpg](readme-pics%2Fbaboon_sr15-270.jpg)                                   |
+|      ![baboon_sc15.jpg](readme-pics%2Fbaboon_sc15.jpg)       |                  ![baboon_sr15-90.jpg](readme-pics%2Fbaboon_sr15-90.jpg)                  |                  ![baboon_sr15-180.jpg](readme-pics%2Fbaboon_sr15-180.jpg)                  |                  ![baboon_sr15-270.jpg](readme-pics%2Fbaboon_sr15-270.jpg)                  |
 | ```baboon.ppm baboon_sc15.ppm 1 200 200 200 200 scale 1.5``` | ```baboon.ppm baboon_sr15-90.ppm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 90``` | ```baboon.ppm baboon_sr15-180.ppm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 180``` | ```baboon.ppm baboon_sr15-270.ppm 2 200 200 200 200 scale 1.5 200 200 200 200 rotate 270``` |
-| ![baboon_sc15_1.jpg](readme-pics%2Fbaboon_sc15_1.jpg)        | ![baboon_sr15-90_1.jpg](readme-pics%2Fbaboon_sr15-90_1.jpg)                               | ![baboon_sr15-180_1.jpg](readme-pics%2Fbaboon_sr15-180_1.jpg)                               | ![baboon_sr15-270_1.jpg](readme-pics%2Fbaboon_sr15-270_1.jpg)                               |
+|    ![baboon_sc15_1.jpg](readme-pics%2Fbaboon_sc15_1.jpg)     |                ![baboon_sr15-90_1.jpg](readme-pics%2Fbaboon_sr15-90_1.jpg)                |                ![baboon_sr15-180_1.jpg](readme-pics%2Fbaboon_sr15-180_1.jpg)                |                ![baboon_sr15-270_1.jpg](readme-pics%2Fbaboon_sr15-270_1.jpg)                |
+
+
+|                            Histogram Stretching                            |                                     Histogram Stretching w/ Rotate 90                                     |                                     Histogram Stretching w/ Rotate 180                                      |                                     Histogram Stretching w/ Rotate 270                                      |
+|:--------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------:|
+| ```baboon.pgm baboon_hs.pgm 1 200 200 200 200 histogramStretchAll 0 255``` | ```baboon.pgm baboon_hs_ro90.pgm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 90``` | ```baboon.pgm baboon_hs_ro180.pgm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 180``` | ```baboon.pgm baboon_hs_ro270.pgm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 270``` |
+|               ![baboon_hs.jpg](readme-pics%2Fbaboon_hs.jpg)                |                          ![baboon_hs_ro90.jpg](readme-pics%2Fbaboon_hs_ro90.jpg)                          |                          ![baboon_hs_ro180.jpg](readme-pics%2Fbaboon_hs_ro180.jpg)                          |                          ![baboon_hs_ro270.jpg](readme-pics%2Fbaboon_hs_ro270.jpg)                          |
+| ```baboon.ppm baboon_hs.ppm 1 200 200 200 200 histogramStretchAll 0 255``` | ```baboon.ppm baboon_hs_ro90.ppm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 90``` | ```baboon.ppm baboon_hs_ro180.ppm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 180``` | ```baboon.ppm baboon_hs_ro270.ppm 2 200 200 200 200 histogramStretchAll 0 255 200 200 200 200 rotate 270``` | 
+|             ![baboon_hs_1.jpg](readme-pics%2Fbaboon_hs_1.jpg)              |                        ![baboon_hs_ro90_1.jpg](readme-pics%2Fbaboon_hs_ro90_1.jpg)                        |                        ![baboon_hs_ro180_1.jpg](readme-pics%2Fbaboon_hs_ro180_1.jpg)                        |                        ![baboon_hs_ro270_1.jpg](readme-pics%2Fbaboon_hs_ro270_1.jpg)                        |
+
+
+|                                                                        Histogram Stretching                                                                         |                                                                                 Histogram Stretching                                                                                 |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|                                             ```baboon.pgm baboon_hs.pgm 1 200 200 200 200 histogramStretchAll 0 255```                                              |                                                        ```slope.pgm slope_hs.pgm 1 25 25 484 750 histogramStretchAll 0 255```                                                        |
+|                                                            ![baboon_hs.jpg](readme-pics%2Fbaboon_hs.jpg)                                                            |                                                                     ![slope_hs.jpg](readme-pics%2Fslope_hs.jpg)                                                                      |
+| ![hist_20231211_033057_34OYld.jpg](readme-pics%2Fhist_20231211_033057_34OYld.jpg) ![hist_20231211_033058_EbhbmA.jpg](readme-pics%2Fhist_20231211_033058_EbhbmA.jpg) | <center>![hist_20231211_033057_BgWD9y.jpg](readme-pics%2Fhist_20231211_033057_BgWD9y.jpg) ![hist_20231211_033057_iX7Lxp.jpg](readme-pics%2Fhist_20231211_033057_iX7Lxp.jpg)</center> |
+
+
+
+|                               Histogram Equalization                                |                                       Histogram Equalization w/ Rotate 90                                        |                                        Histogram Equalization w/ Rotate 180                                        |                                        Histogram Equalization w/ Rotate 270                                        |
+|:-----------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------:|
+|    ```baboon.pgm baboon_he.pgm 1 200 200 200 200 histogramEqualizationAll rgb```    |   ```baboon.pgm baboon_he_ro90.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 90```   |   ```baboon.pgm baboon_he_ro180.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 180```   |   ```baboon.pgm baboon_he_ro270.pgm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 270```   |
+|                    ![baboon_he.jpg](readme-pics%2Fbaboon_he.jpg)                    |                             ![baboon_he_ro90.jpg](readme-pics%2Fbaboon_he_ro90.jpg)                              |                             ![baboon_he_ro180.jpg](readme-pics%2Fbaboon_he_ro180.jpg)                              |                             ![baboon_he_ro270.jpg](readme-pics%2Fbaboon_he_ro270.jpg)                              |
+|   ```baboon.ppm baboon_he_1.ppm 1 200 200 200 200 histogramEqualizationAll rgb```   |  ```baboon.ppm baboon_he_ro90_1.ppm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 90```  |  ```baboon.ppm baboon_he_ro180_1.ppm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 180```  |  ```baboon.ppm baboon_he_ro270_1.ppm 2 200 200 200 200 histogramEqualizationAll rgb 200 200 200 200 rotate 270```  | 
+|                  ![baboon_he_1.jpg](readme-pics%2Fbaboon_he_1.jpg)                  |                           ![baboon_he_ro90_1.jpg](readme-pics%2Fbaboon_he_ro90_1.jpg)                            |                           ![baboon_he_ro180_1.jpg](readme-pics%2Fbaboon_he_ro180_1.jpg)                            |                           ![baboon_he_ro270_1.jpg](readme-pics%2Fbaboon_he_ro270_1.jpg)                            |
+| ```baboon.ppm baboon_he_hsv_1.ppm 1 200 200 200 200 histogramEqualizationAll hsv``` | ```baboon.ppm baboon_he_ro90_hsv.ppm 2 200 200 200 200 histogramEqualizationAll hsv 200 200 200 200 rotate 90``` | ```baboon.ppm baboon_he_ro180_hsv.ppm 2 200 200 200 200 histogramEqualizationAll hsv 200 200 200 200 rotate 180``` | ```baboon.ppm baboon_he_ro270_hsv.ppm 2 200 200 200 200 histogramEqualizationAll hsv 200 200 200 200 rotate 270``` |
+|              ![baboon_he_hsv_1.jpg](readme-pics%2Fbaboon_he_hsv_1.jpg)              |                         ![baboon_he_ro90_hsv.jpg](readme-pics%2Fbaboon_he_ro90_hsv.jpg)                          |                         ![baboon_he_ro180_hsv.jpg](readme-pics%2Fbaboon_he_ro180_hsv.jpg)                          |                         ![baboon_he_ro270_hsv.jpg](readme-pics%2Fbaboon_he_ro270_hsv.jpg)                          |
+
+
+|                                                                       Histogram Equalization                                                                       |                                                                       Histogram Equalization                                                                        |                                                                       Histogram Equalization                                                                       |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|                                           ```baboon.pgm baboon_he.pgm 1 200 200 200 200 histogramEqualizationAll rgb```                                            |                                              ```slope.pgm slope_he.pgm 1 25 25 484 750 histogramEqualizationAll rgb```                                              |                                          ```mountain.pgm mountain_he.pgm 1 10 10 321 492 histogramEqualizationAll rgb```                                           |
+|                                                           ![baboon_he.jpg](readme-pics%2Fbaboon_he.jpg)                                                            |                                                             ![slope_he.jpg](readme-pics%2Fslope_he.jpg)                                                             |                                                         ![mountain_he.jpg](readme-pics%2Fmountain_he.jpg)                                                          |
+| ![hist_20231211_033058_l8lU13.jpg](readme-pics%2Fhist_20231211_033058_l8lU13.jpg)![hist_20231211_033058_XVjGix.jpg](readme-pics%2Fhist_20231211_033058_XVjGix.jpg) | ![hist_20231211_033059_HgZIek.jpg](readme-pics%2Fhist_20231211_033059_HgZIek.jpg) ![hist_20231211_033059_r7CD9L.jpg](readme-pics%2Fhist_20231211_033059_r7CD9L.jpg) | ![hist_20231211_033058_XAGVZn.jpg](readme-pics%2Fhist_20231211_033058_XAGVZn.jpg)![hist_20231211_033058_xSis7n.jpg](readme-pics%2Fhist_20231211_033058_xSis7n.jpg) |
+
+
 </dd>
 </dl>
 
@@ -494,8 +529,147 @@ Perform Operation: bandStopFilter                     [SUCCESS]
        Additional Files: 
           mag_20231211_033103_8Zh9dM.pgm
           mag_20231211_033103_0Q795P.pgm
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_hs.ppm
 
-Process finished with exit code 0
+Perform Operation: histogramStretchAll                [SUCCESS]
+       Additional Files:
+          hist_20231212_143119_YAwEZL.pgm
+          hist_20231212_143119_v74o7C.pgm
+          hist_20231212_143119_btd46B.pgm
+          hist_20231212_143119_RTlKO9.pgm
+          hist_20231212_143119_Gyt90o.pgm
+          hist_20231212_143119_2kAcjt.pgm
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_hs_ro90.ppm
+
+Perform Operation: histogramStretchAll                [SUCCESS]
+       Additional Files:
+          hist_20231212_143119_Lb5bGa.pgm
+          hist_20231212_143119_XaVtGn.pgm
+          hist_20231212_143119_1AVUS2.pgm
+          hist_20231212_143119_FkP8EO.pgm
+          hist_20231212_143119_5OHF5v.pgm
+          hist_20231212_143119_sqDNRc.pgm
+Perform Operation: rotate                             [SUCCESS]
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_hs_ro180.ppm
+
+Perform Operation: histogramStretchAll                [SUCCESS]
+       Additional Files:
+          hist_20231212_143120_PIEgeh.pgm
+          hist_20231212_143120_c8Br01.pgm
+          hist_20231212_143120_tmGpIb.pgm
+          hist_20231212_143120_oliU2j.pgm
+          hist_20231212_143120_ur48Nv.pgm
+          hist_20231212_143120_rWXFiz.pgm
+Perform Operation: rotate                             [SUCCESS]
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_hs_ro270.ppm
+
+Perform Operation: histogramStretchAll                [SUCCESS]
+       Additional Files:
+          hist_20231212_143120_3ZCPui.pgm
+          hist_20231212_143120_Ll1I8P.pgm
+          hist_20231212_143120_GqKgoO.pgm
+          hist_20231212_143120_OUVttt.pgm
+          hist_20231212_143120_m8RLYi.pgm
+          hist_20231212_143120_GJ923F.pgm
+Perform Operation: rotate                             [SUCCESS]
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_he_1.ppm
+
+Perform Operation: histogramEqualizationAll           [SUCCESS]
+       Additional Files:
+          hist_20231212_150552_PVJXBY.pgm
+          hist_20231212_150552_QsTCT7.pgm
+          hist_20231212_150552_bNyJsB.pgm
+          hist_20231212_150553_AzvbP2.pgm
+          hist_20231212_150553_AWbHGA.pgm
+          hist_20231212_150553_Rl2kJm.pgm
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_he_ro90_1.ppm
+
+Perform Operation: histogramEqualizationAll           [SUCCESS]
+       Additional Files:
+          hist_20231212_150553_qTOUCI.pgm
+          hist_20231212_150553_SutQlF.pgm
+          hist_20231212_150553_NonDtl.pgm
+          hist_20231212_150553_1TOEN8.pgm
+          hist_20231212_150553_apjNIB.pgm
+          hist_20231212_150553_69MfPO.pgm
+Perform Operation: rotate                             [SUCCESS]
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_he_ro180_1.ppm
+
+Perform Operation: histogramEqualizationAll           [SUCCESS]
+       Additional Files:
+          hist_20231212_150553_8VEiEK.pgm
+          hist_20231212_150553_F2l5iJ.pgm
+          hist_20231212_150553_xRwmmr.pgm
+          hist_20231212_150553_XfMgUX.pgm
+          hist_20231212_150553_xx3y8K.pgm
+          hist_20231212_150553_5fC9rU.pgm
+Perform Operation: rotate                             [SUCCESS]
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_he_ro270_1.ppm
+
+Perform Operation: histogramEqualizationAll           [SUCCESS]
+       Additional Files:
+          hist_20231212_150553_zKJWAG.pgm
+          hist_20231212_150553_vgGRkW.pgm
+          hist_20231212_150554_Th3OYT.pgm
+          hist_20231212_150554_omOLA4.pgm
+          hist_20231212_150554_7DKCHh.pgm
+          hist_20231212_150554_NL7xXW.pgm
+Perform Operation: rotate                             [SUCCESS]
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_he_hsv.ppm
+
+Perform Operation: histogramEqualizationAll           [SUCCESS]
+       Additional Files:
+          hist_20231212_150554_T5zGMO.pgm
+          hist_20231212_150554_k3eUyR.pgm
+          hist_20231212_150554_L11RUd.pgm
+          hist_20231212_150554_wfdQwV.pgm
+          hist_20231212_150554_4cty3z.pgm
+          hist_20231212_150554_eHfX2t.pgm
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_he_ro90_hsv.ppm
+
+Perform Operation: histogramEqualizationAll           [SUCCESS]
+       Additional Files:
+          hist_20231212_150554_eRPXpm.pgm
+          hist_20231212_150554_Zzb1n1.pgm
+          hist_20231212_150554_iZR531.pgm
+          hist_20231212_150554_yZfMr7.pgm
+          hist_20231212_150554_V7VGdZ.pgm
+          hist_20231212_150554_KdjdVS.pgm
+Perform Operation: rotate                             [SUCCESS]
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_he_ro180_hsv.ppm
+
+Perform Operation: histogramEqualizationAll           [SUCCESS]
+       Additional Files:
+          hist_20231212_150554_TjrObe.pgm
+          hist_20231212_150555_aZ2rl0.pgm
+          hist_20231212_150555_bWjw7M.pgm
+          hist_20231212_150555_YoXhS0.pgm
+          hist_20231212_150555_LEWwYi.pgm
+          hist_20231212_150555_TvtT69.pgm
+Perform Operation: rotate                             [SUCCESS]
+=*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*=
+Source Image:baboon.ppm               Target Image:baboon_he_ro270_hsv.ppm
+
+Perform Operation: histogramEqualizationAll           [SUCCESS]
+       Additional Files:
+          hist_20231212_150555_C21Pj0.pgm
+          hist_20231212_150555_dFPQGp.pgm
+          hist_20231212_150555_ODQTEI.pgm
+          hist_20231212_150555_GgHGkv.pgm
+          hist_20231212_150555_Fh1tvc.pgm
+          hist_20231212_150555_Olpsss.pgm
+Perform Operation: rotate                             [SUCCESS]
 ```
 
 </dd>

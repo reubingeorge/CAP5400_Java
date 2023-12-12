@@ -442,7 +442,7 @@ public class Image implements AutoCloseable{
      * This method is used to get the total number of channels in the image.
      * @return The total number of channels in the image
      */
-    public int getChannels() {
+    public int getNumChannels() {
         return channels;
     }
 
@@ -460,7 +460,7 @@ public class Image implements AutoCloseable{
      * @param other Image to be copied.
      */
     public void deepCopy(Image other){
-        if(other.rows < this.rows || other.columns < this.columns || other.channels != this.channels){
+        if(other.rows != this.rows || other.columns != this.columns || other.channels != this.channels){
             throw new IllegalArgumentException("The source image has dimensions ("
                     + other.rows + ", " + other.columns + ", " + other.channels +
                     ") while the destination image has dimensions (" +

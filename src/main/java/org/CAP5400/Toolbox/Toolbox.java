@@ -50,7 +50,7 @@ public class Toolbox {
         if(value > -50 && value < 50) {
             for(int i = 0; i < region.getTotalX(); i++) {
                 for(int j = 0; j < region.getTotalY(); j++) {
-                    for(int k = 0; k < region.getChannels(); k++){
+                    for(int k = 0; k < region.getNumChannels(); k++){
                         var sourceX = i + region.getStartX();
                         var sourceY = j + region.getStartY();
                         var oldValue = region.getSourceImage().getPixel(sourceX, sourceY, k);
@@ -82,7 +82,7 @@ public class Toolbox {
 
         for(int i = 0; i < region.getTotalX(); i++) {
             for (int j = 0; j < region.getTotalY(); j++) {
-                for (int k = 0; k < region.getChannels(); k++) {
+                for (int k = 0; k < region.getNumChannels(); k++) {
                     var sourceX = i + region.getStartX();
                     var sourceY = j + region.getStartY();
                     var intensity = region.getSourceImage().getPixel(sourceX, sourceY, k);
@@ -139,11 +139,11 @@ public class Toolbox {
 
         var scaledRow = (int)((float)row * ratio);
         var scaledCol = (int)((float)col * ratio);
-        var scaledImage = new Image(scaledRow, scaledCol, region.getChannels());
+        var scaledImage = new Image(scaledRow, scaledCol, region.getNumChannels());
 
         for(int i = 0; i < scaledRow; i++){
             for(int j = 0; j < scaledCol; j++){
-                for(int k = 0; k < region.getChannels(); k++){
+                for(int k = 0; k < region.getNumChannels(); k++){
                     var newX = (int)((float)i / ratio);
                     var newY = (int)((float)j / ratio);
                     var intensity = region.getRegionImage().getPixel(newX, newY, k);
@@ -163,11 +163,11 @@ public class Toolbox {
      */
     protected static void rotateClockwise90(@NotNull ROI region) throws Exception{
         region.enforceSquareDimensions(true);
-        var rotatedImage = new Image(region.getTotalX(), region.getTotalY(), region.getChannels());
+        var rotatedImage = new Image(region.getTotalX(), region.getTotalY(), region.getNumChannels());
 
         for(int i = 0; i < region.getTotalX(); i++){
             for(int j = 0; j < region.getTotalY(); j++){
-                for(int k = 0; k < region.getChannels(); k++){
+                for(int k = 0; k < region.getNumChannels(); k++){
                     var newY =  region.getTotalX() - i - 1;
                     var intensity = region.getRegionImage().getPixel(i, j, k);
                     rotatedImage.setPixel(j, newY, k, intensity);

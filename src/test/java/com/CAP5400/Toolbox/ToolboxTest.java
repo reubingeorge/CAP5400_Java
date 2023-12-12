@@ -6,6 +6,7 @@ import static org.CAP5400.Image.Image.MAX_RGB;
 import static org.CAP5400.Toolbox.Toolbox.*;
 import org.CAP5400.RegionOfInterest.ROI;
 
+import org.CAP5400.Toolbox.Toolbox;
 import org.junit.jupiter.api.Test;
 
 
@@ -66,7 +67,7 @@ public class ToolboxTest {
             addBrightness(colorRegion1, additiveValue1);
             for(int i = 0; i < colorRegion1.getTotalX(); i++) {
                 for (int j = 0; j < colorRegion1.getTotalY(); j++) {
-                    for (int k = 0; k < colorRegion1.getChannels(); k++) {
+                    for (int k = 0; k < colorRegion1.getNumChannels(); k++) {
                         var sourceX = i + colorRegion1.getStartX();
                         var sourceY = j + colorRegion1.getStartY();
                         var sourcePixel = colorImage.getPixel(sourceX, sourceY, k);
@@ -81,7 +82,7 @@ public class ToolboxTest {
             addBrightness(colorRegion2, additiveValue2);
             for(int i = 0; i < colorRegion2.getTotalX(); i++) {
                 for (int j = 0; j < colorRegion2.getTotalY(); j++) {
-                    for (int k = 0; k < colorRegion2.getChannels(); k++) {
+                    for (int k = 0; k < colorRegion2.getNumChannels(); k++) {
                         var sourceX = i + colorRegion2.getStartX();
                         var sourceY = j + colorRegion2.getStartY();
                         var sourcePixel = colorImage.getPixel(sourceX, sourceY, k);
@@ -104,7 +105,7 @@ public class ToolboxTest {
             addBrightness(grayscaleRegion1, additiveValue1);
             for(int i = 0; i < grayscaleRegion1.getTotalX(); i++) {
                 for (int j = 0; j < grayscaleRegion1.getTotalY(); j++) {
-                    for (int k = 0; k < grayscaleRegion1.getChannels(); k++) {
+                    for (int k = 0; k < grayscaleRegion1.getNumChannels(); k++) {
                         var sourceX = i + grayscaleRegion1.getStartX();
                         var sourceY = j + grayscaleRegion1.getStartY();
                         var sourcePixel = grayscaleImage.getPixel(sourceX, sourceY, k);
@@ -119,7 +120,7 @@ public class ToolboxTest {
             addBrightness(grayscaleRegion2, additiveValue2);
             for(int i = 0; i < grayscaleRegion2.getTotalX(); i++) {
                 for (int j = 0; j < grayscaleRegion2.getTotalY(); j++) {
-                    for (int k = 0; k < grayscaleRegion2.getChannels(); k++) {
+                    for (int k = 0; k < grayscaleRegion2.getNumChannels(); k++) {
                         var sourceX = i + grayscaleRegion2.getStartX();
                         var sourceY = j + grayscaleRegion2.getStartY();
                         var sourcePixel = grayscaleImage.getPixel(sourceX, sourceY, k);
@@ -143,7 +144,7 @@ public class ToolboxTest {
             decreaseBrightness(colorRegion1, threshold1, subtractiveValue1);
             for(int i = 0; i < colorRegion1.getTotalX(); i++) {
                 for (int j = 0; j < colorRegion1.getTotalY(); j++) {
-                    for (int k = 0; k < colorRegion1.getChannels(); k++) {
+                    for (int k = 0; k < colorRegion1.getNumChannels(); k++) {
                         var sourceX = i + colorRegion1.getStartX();
                         var sourceY = j + colorRegion1.getStartY();
                         var sourcePixel = colorImage.getPixel(sourceX, sourceY, k);
@@ -278,7 +279,7 @@ public class ToolboxTest {
             scale(colorRegion, colorRatio);
             for(int i = 0; i < colorRegion.getTotalX(); i++){
                 for(int j = 0; j < colorRegion.getTotalY(); j++){
-                    for(int k = 0; k < colorRegion.getChannels(); k++){
+                    for(int k = 0; k < colorRegion.getNumChannels(); k++){
                         var sourceX = i + colorRegion.getStartX();
                         var sourceY = j + colorRegion.getStartY();
                         var sourcePixel = colorImage.getPixel(sourceX, sourceY, k);
@@ -318,7 +319,7 @@ public class ToolboxTest {
             rotate(colorRegion, 360);
             for(int i = 0; i < colorRegion.getTotalX(); i++){
                 for(int j = 0; j < colorRegion.getTotalY(); j++){
-                    for(int k = 0; k < colorRegion.getChannels(); k++){
+                    for(int k = 0; k < colorRegion.getNumChannels(); k++){
                         var sourceX = i + colorRegion.getStartX();
                         var sourceY = j + colorRegion.getStartY();
                         var sourcePixel = colorImage.getPixel(sourceX, sourceY, k);
@@ -344,6 +345,36 @@ public class ToolboxTest {
 
         }
         catch (Exception e){ fail(e.getMessage()); }
+    }
+
+    @Test
+    public void testStretchSuccess(){
+        try{
+            OpenCV.loadLocally();
+            var controlImage = new Image("baboon.ppm");
+            var colorImage = new Image("baboon.ppm");
+            var colorRegion = new ROI(colorImage, 200, 200, 200, 200);
+            var minStretch = 0;
+            var maxStretch = 255;
+
+
+            Toolbox.histogramStretchAll(colorRegion, minStretch, maxStretch);
+
+            for(int i = 0; i < colorRegion.getTotalX(); i++){
+                for(int j = 0; j < colorRegion.getTotalY(); j++){
+                    for(int k = 0; k < colorRegion.getNumChannels(); k++){
+                        var intensity = colorRegion.getRegionImage().getPixel(i, j, k);
+                        assertThat(intensity).isBetween(minStretch, maxStretch);
+                    }
+                }
+            }
+
+
+
+        }
+        catch (Exception e){
+            fail(e.getMessage());
+        }
     }
 
 }

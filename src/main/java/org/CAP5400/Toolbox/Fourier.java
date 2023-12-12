@@ -6,7 +6,6 @@ import org.CAP5400.Image.Image;
 import org.CAP5400.Misc.Misc;
 import org.CAP5400.Misc.StringOptions;
 import org.CAP5400.RegionOfInterest.ROI;
-import org.checkerframework.common.value.qual.DoubleVal;
 import org.checkerframework.common.value.qual.IntRange;
 import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
@@ -354,7 +353,7 @@ public class Fourier implements AutoCloseable{
             var hsvImage = new Mat();
             var updatedRgbImage = new Mat();
             Imgproc.cvtColor(rgbImage, hsvImage, Imgproc.COLOR_BGR2HSV);
-            var hsvChannels = new ArrayList<Mat>(region.getChannels());
+            var hsvChannels = new ArrayList<Mat>(region.getNumChannels());
             Core.split(hsvImage, hsvChannels);
             hsvChannels.set(channel, operationChannel);
             Core.merge(hsvChannels, hsvImage);
