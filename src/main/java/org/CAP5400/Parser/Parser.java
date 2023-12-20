@@ -151,7 +151,7 @@ public class Parser {
             var lines = Files.readAllLines(path);
             for(var line : lines){
                 try {
-                    var tokens = new LinkedList<>(Arrays.stream(line.split(" ")).toList());
+                    var tokens = new LinkedList<>(Arrays.asList(line.split(" ")));
                     System.out.println("=*=".repeat(35));
                     var sourceImageName = tokens.poll();
                     var sourceImage = new Image(sourceImageName);
@@ -191,35 +191,27 @@ public class Parser {
                         }
                         catch (Exception e1){
                             System.out.println("["+"\033[1;31mFAILED\033[0m"+ "]");
-                            //e1.printStackTrace();
-                            String errorMessage;
-                            if(e1.getMessage() != null){
-                                errorMessage = e1.getMessage();
-                            }
-                            else {
-                                errorMessage = e1.getCause().getMessage();
-                            }
-                            System.out.printf("\033[1m%15s\033[0m%s\n","Reason: ", errorMessage);
+                            System.out.printf("\033[1m%15s\033[0m%s\n","Reason: ", getErrorMessage(e1));
                         }
                     }
                     sourceImage.save(targetImageName);
                 }
                 catch (Exception e2){
-                    //e2.printStackTrace();
-                    String errorMessage;
-                    if(e2.getMessage() != null){
-                        errorMessage = e2.getMessage();
-                    }
-                    else {
-                        errorMessage = e2.getCause().getMessage();
-                    }
-                    System.out.printf("\033[1m%15s\033[0m%s\n","Error: ", errorMessage);
+                    System.out.printf("\033[1m%15s\033[0m%s\n","Error: ", getErrorMessage(e2));
                 }
 
             }
         }
         catch (Exception e3){
             e3.printStackTrace();
+        }
+    }
+
+    private static String getErrorMessage(Exception exception) {
+        if (exception.getMessage() != null) {
+            return exception.getMessage();
+        } else {
+            return exception.getCause().getMessage();
         }
     }
 }

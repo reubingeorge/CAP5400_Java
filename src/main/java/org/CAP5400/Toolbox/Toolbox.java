@@ -151,8 +151,8 @@ public class Toolbox {
                 }
             }
         }
-
-        region.getRegionImage().deepCopy(scaledImage);
+        var croppedScaledImage = new ROI(scaledImage, 0, 0, row, col);
+        region.getRegionImage().deepCopy(croppedScaledImage.getRegionImage());
 
     }
 

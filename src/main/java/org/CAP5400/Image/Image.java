@@ -4,10 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import org.CAP5400.Exceptions.IllegalColorspaceException;
-import org.CAP5400.Exceptions.ImageIncorrectExtensionException;
-import org.CAP5400.Exceptions.ImageNotFoundException;
-import org.CAP5400.Exceptions.ImageOutOfBoundsException;
+import org.CAP5400.Exceptions.*;
 import org.CAP5400.Misc.Misc;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
@@ -307,8 +304,12 @@ public class Image implements AutoCloseable{
      * This method saves the image to the specified file name.
      * @param fileName The name of the file to be saved
      */
-    public void save(@NotNull @NotBlank @NotEmpty String fileName) {
+    public void save(@NotNull @NotBlank @NotEmpty String fileName) throws ImageIncorrectExtensionException {
         var image = getOpenCvMat();
+        var extension = Misc.getFileExtension(fileName);
+        if(!extension.equals("ppm") && !extension.equals("pgm")){
+            throw new ImageIncorrectExtensionException(extension);
+        }
         Imgcodecs.imwrite(fileName, image);
     }
 
@@ -459,13 +460,11 @@ public class Image implements AutoCloseable{
      * <p><b>NOTE: </b> The observer is notified when this method is called.</p>
      * @param other Image to be copied.
      */
-    public void deepCopy(Image other){
+    public void deepCopy(Image other) throws ImageDimensionsNotSameException {
         if(other.rows != this.rows || other.columns != this.columns || other.channels != this.channels){
-            throw new IllegalArgumentException("The source image has dimensions ("
-                    + other.rows + ", " + other.columns + ", " + other.channels +
-                    ") while the destination image has dimensions (" +
-                    this.rows + ", " + this.columns + ", " + this.channels + ")");
+            throw new ImageDimensionsNotSameException(this, other);
         }
+
         for(int i = 0; i < this.rows; i++){
             for(int j = 0; j < this.columns; j++){
                 for(int k = 0; k < this.channels; k++){
@@ -512,4 +511,5 @@ public class Image implements AutoCloseable{
         observers.clear();
         pixels = null;
     }
+
 }
